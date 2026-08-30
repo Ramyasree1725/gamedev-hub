@@ -61,3 +61,6 @@ gamedev-hub/
 All Start / Pause / Restart buttons work. After game over you can submit your score.
 
 Built as a learning project – every button and feature is fully functional.
+
+## Docker
+docker build -t gamedev-hub . && docker run -p 5000:5000 gamedev-hub
