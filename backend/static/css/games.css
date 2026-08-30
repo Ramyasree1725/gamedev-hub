@@ -1,0 +1,51 @@
+
+/* GameDev Hub - Game-specific styles and animations */
+.game-wrapper { position: relative; width: 100%; max-width: 800px; margin: 0 auto; }
+.game-hud { display: flex; justify-content: space-between; padding: 0.75rem 1rem; background: rgba(26,26,36,0.9); border-radius: 8px 8px 0 0; }
+.game-hud .score { font-family: 'Orbitron', sans-serif; font-size: 1.25rem; color: #4ade80; }
+.game-hud .lives { color: #f87171; }
+.game-hud .level { color: #60a5fa; }
+
+.canvas-frame { border: 2px solid #2e2e3e; border-radius: 0 0 8px 8px; overflow: hidden; background: #0a0a0f; }
+.canvas-frame canvas { display: block; width: 100%; height: auto; }
+
+.game-over-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.75); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; z-index: 10; }
+.game-over-overlay h2 { font-family: 'Orbitron', sans-serif; font-size: 2rem; margin-bottom: 0.5rem; }
+.game-over-overlay .final-score { font-size: 1.5rem; color: #4ade80; margin-bottom: 1.5rem; }
+
+.power-up-badge { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; margin: 0.2rem; }
+.power-up-badge.speed { background: rgba(96,165,250,0.25); color: #60a5fa; }
+.power-up-badge.shield { background: rgba(74,222,128,0.25); color: #4ade80; }
+.power-up-badge.multi { background: rgba(251,191,36,0.25); color: #fbbf24; }
+
+.combo-meter { height: 6px; background: #1a1a24; border-radius: 3px; overflow: hidden; margin-top: 0.5rem; }
+.combo-meter .fill { height: 100%; background: linear-gradient(90deg, #7c5cfc, #f472b6); transition: width 0.2s; }
+
+.achievement-toast { position: fixed; bottom: 2rem; right: 2rem; background: #1a1a24; border: 1px solid #7c5cfc; border-radius: 12px; padding: 1rem 1.5rem; box-shadow: 0 8px 32px rgba(0,0,0,0.4); animation: slideIn 0.3s ease; z-index: 1000; }
+@keyframes slideIn { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+.difficulty-selector { display: flex; gap: 0.5rem; margin: 1rem 0; }
+.difficulty-selector button { flex: 1; padding: 0.6rem; border: 1px solid #2e2e3e; background: #1a1a24; color: #9898b0; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.difficulty-selector button.active, .difficulty-selector button:hover { border-color: #7c5cfc; color: #fff; background: rgba(124,92,252,0.15); }
+
+.leaderboard-mini { max-height: 200px; overflow-y: auto; }
+.leaderboard-mini .row { display: flex; justify-content: space-between; padding: 0.4rem 0.6rem; border-bottom: 1px solid #2e2e3e; font-size: 0.9rem; }
+.leaderboard-mini .row:nth-child(1) { color: #fbbf24; }
+.leaderboard-mini .row:nth-child(2) { color: #c0c0c0; }
+.leaderboard-mini .row:nth-child(3) { color: #cd7f32; }
+
+.mobile-controls { display: none; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1rem; }
+.mobile-controls button { padding: 1rem; font-size: 1.5rem; background: #1a1a24; border: 1px solid #2e2e3e; border-radius: 12px; color: #e8e8f0; }
+@media (max-width: 700px) { .mobile-controls { display: grid; } }
+
+.tutorial-highlight { outline: 2px dashed #7c5cfc; outline-offset: 4px; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { outline-color: #7c5cfc; } 50% { outline-color: #a78bfa; } }
+
+.particle-canvas { position: absolute; inset: 0; pointer-events: none; }
+.score-popup { position: absolute; font-weight: 700; color: #4ade80; animation: floatUp 0.8s forwards; pointer-events: none; }
+@keyframes floatUp { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-40px); } }
+
+.settings-panel { background: #1a1a24; border: 1px solid #2e2e3e; border-radius: 12px; padding: 1.5rem; margin-top: 1rem; }
+.settings-panel label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; color: #9898b0; }
+.settings-panel input[type="range"] { width: 120px; }
+.settings-panel input[type="checkbox"] { width: 18px; height: 18px; accent-color: #7c5cfc; }

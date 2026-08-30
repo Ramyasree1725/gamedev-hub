@@ -1,0 +1,57 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "eed22fbc16255d17fc1bfbf70832a05f3113dff81402011df7656dd16b29846c"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.12"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "flask": {
+            "hashes": [
+                "sha256:dummy"
+            ],
+            "index": "pypi",
+            "version": "==3.0.3"
+        },
+        "flask-cors": {
+            "hashes": [
+                "sha256:dummy"
+            ],
+            "index": "pypi",
+            "version": "==4.0.1"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:dummy"
+            ],
+            "index": "pypi",
+            "version": "==22.0.0"
+        }
+    },
+    "develop": {
+        "pytest": {
+            "hashes": [
+                "sha256:dummy"
+            ],
+            "index": "pypi",
+            "version": "==8.3.2"
+        },
+        "pytest-cov": {
+            "hashes": [
+                "sha256:dummy"
+            ],
+            "index": "pypi",
+            "version": "==5.0.0"
+        }
+    }
+}
