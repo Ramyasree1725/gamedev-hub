@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}All Games - GameDev Hub{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>All Games</h1>
+    <p>Choose a game and start playing. Scores are saved to the leaderboard.</p>
+</section>
+
+<div class="games-grid large">
+    {% for game in games %}
+    <div class="game-card detailed" style="--accent: {{ game.color }}">
+        <div class="game-icon large">{{ game.icon }}</div>
+        <h3>{{ game.name }}</h3>
+        <p>{{ game.description }}</p>
+        <div class="game-meta">
+            <span class="badge">{{ game.difficulty }}</span>
+            <span class="controls">{{ game.controls }}</span>
+        </div>
+        <div class="card-actions">
+            <a href="/game/{{ game.id }}" class="btn btn-play">Play</a>
+            <a href="/leaderboard#{{ game.id }}" class="btn btn-outline">Scores</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}About - GameDev Hub{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>About GameDev Hub</h1>
+    <p>A simple yet complete full-stack project for learning game development.</p>
+</section>
+
+<div class="about-content">
+    <div class="about-card">
+        <h2>Project Goals</h2>
+        <ul>
+            <li>Demonstrate working frontend + backend integration</li>
+            <li>Provide multiple fully playable mini-games</li>
+            <li>Show how to submit and display scores via REST API</li>
+            <li>Teach core game programming concepts through real code</li>
+            <li>All buttons, navigation and game controls are functional</li>
+        </ul>
+    </div>
+
+    <div class="about-card">
+        <h2>Tech Stack</h2>
+        <ul>
+            <li><strong>Backend:</strong> Python Flask, CORS, in-memory leaderboard</li>
+            <li><strong>Frontend:</strong> HTML5, CSS3, Vanilla JavaScript</li>
+            <li><strong>Graphics:</strong> HTML5 Canvas API</li>
+            <li><strong>Fonts:</strong> Orbitron + Inter (Google Fonts)</li>
+        </ul>
+    </div>
+
+    <div class="about-card">
+        <h2>How to Run Locally</h2>
+        <pre class="code-block">
+cd backend
+pip install -r requirements.txt
+python app.py
+# Open http://localhost:5000
+        </pre>
+    </div>
+
+    <div class="about-card">
+        <h2>Features Checklist</h2>
+        <ul class="checklist">
+            <li>✅ Responsive navigation with mobile menu</li>
+            <li>✅ 5 complete mini-games with start/pause/restart</li>
+            <li>✅ Score submission to backend</li>
+            <li>✅ Live leaderboard with tabs and refresh</li>
+            <li>✅ Tutorial content</li>
+            <li>✅ REST API endpoints</li>
+            <li>✅ Clean modern UI</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

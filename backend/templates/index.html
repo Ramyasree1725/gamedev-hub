@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}GameDev Hub - Learn & Play{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Build. Play. Learn.</h1>
+        <p class="hero-subtitle">A complete game development playground with working mini-games, live leaderboards, and tutorials. Frontend + Backend fully connected.</p>
+        <div class="hero-buttons">
+            <a href="/games" class="btn btn-primary">Play Games</a>
+            <a href="/tutorials" class="btn btn-secondary">Start Learning</a>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="floating-card card-1">🐍 Snake</div>
+        <div class="floating-card card-2">❌ TicTacToe</div>
+        <div class="floating-card card-3">🧠 Memory</div>
+        <div class="floating-card card-4">🧱 Breakout</div>
+        <div class="floating-card card-5">🏓 Pong</div>
+    </div>
+</section>
+
+<section class="features">
+    <h2 class="section-title">What You Get</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>5 Playable Games</h3>
+            <p>Snake, Tic Tac Toe, Memory Match, Breakout and Pong — all with full controls and score tracking.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3>Live Leaderboard</h3>
+            <p>Submit your high scores. Backend stores them and ranks players in real time.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h3>Dev Tutorials</h3>
+            <p>Learn the game loop, Canvas API, simple AI and full-stack score systems.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Full Stack</h3>
+            <p>Flask backend + modern frontend. REST APIs for scores and game data.</p>
+        </div>
+    </div>
+</section>
+
+<section class="games-preview">
+    <h2 class="section-title">Featured Games</h2>
+    <div class="games-grid">
+        {% for game in games %}
+        <div class="game-card" style="--accent: {{ game.color }}">
+            <div class="game-icon">{{ game.icon }}</div>
+            <h3>{{ game.name }}</h3>
+            <p>{{ game.description }}</p>
+            <div class="game-meta">
+                <span class="badge">{{ game.difficulty }}</span>
+                <span class="controls">{{ game.controls }}</span>
+            </div>
+            <a href="/game/{{ game.id }}" class="btn btn-play">Play Now</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Ready to start?</h2>
+    <p>Jump into a game or explore the tutorials. Every button works.</p>
+    <a href="/games" class="btn btn-primary btn-lg">Explore All Games</a>
+</section>
+{% endblock %}

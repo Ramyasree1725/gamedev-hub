@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}{{ game.name }} - GameDev Hub{% endblock %}
+
+{% block head %}
+<style>
+    .game-container { --accent: {{ game.color }}; }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="play-header">
+    <a href="/games" class="back-link">← Back to Games</a>
+    <h1>{{ game.icon }} {{ game.name }}</h1>
+    <p>{{ game.description }}</p>
+    <div class="game-controls-info">
+        <span>Controls: {{ game.controls }}</span>
+        <span class="badge">{{ game.difficulty }}</span>
+    </div>
+</section>
+
+<div class="game-container" id="gameContainer">
+    <div class="game-ui">
+        <div class="score-panel">
+            <span>Score: <strong id="scoreDisplay">0</strong></span>
+            <span id="livesDisplay"></span>
+            <span id="statusDisplay"></span>
+        </div>
+        <div class="game-actions">
+            <button class="btn btn-primary" id="startBtn">Start Game</button>
+            <button class="btn btn-secondary" id="pauseBtn" disabled>Pause</button>
+            <button class="btn btn-outline" id="restartBtn">Restart</button>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas" width="600" height="400"></canvas>
+
+    <div class="score-submit" id="scoreSubmit" style="display:none;">
+        <h3>Game Over!</h3>
+        <p>Your score: <strong id="finalScore">0</strong></p>
+        <div class="submit-form">
+            <input type="text" id="playerName" placeholder="Enter your name" maxlength="20">
+            <button class="btn btn-primary" id="submitScoreBtn">Submit Score</button>
+        </div>
+        <p id="submitMsg"></p>
+    </div>
+</div>
+
+<div class="game-tips">
+    <h3>Tips</h3>
+    <ul>
+        <li>Use the buttons above to start, pause and restart.</li>
+        <li>After game over you can submit your score to the global leaderboard.</li>
+        <li>Check the <a href="/leaderboard">Leaderboard</a> to see top players.</li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    window.CURRENT_GAME = "{{ game.id }}";
+</script>
+<script src="{{ url_for('static', filename='js/' + game.id + '.js') }}"></script>
+{% endblock %}

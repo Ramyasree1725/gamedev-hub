@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Leaderboard - GameDev Hub{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>🏆 Leaderboard</h1>
+    <p>Top scores across all games. Submit your own from any game!</p>
+</section>
+
+<div class="leaderboard-tabs">
+    {% for game in games %}
+    <button class="tab-btn {% if loop.first %}active{% endif %}" data-game="{{ game.id }}">
+        {{ game.icon }} {{ game.name }}
+    </button>
+    {% endfor %}
+</div>
+
+<div class="leaderboard-panels">
+    {% for game in games %}
+    <div class="leaderboard-panel {% if loop.first %}active{% endif %}" id="panel-{{ game.id }}">
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-{{ game.id }}">
+                {% set scores = leaderboard[game.id] | sort(attribute='score', reverse=True) %}
+                {% for entry in scores[:15] %}
+                <tr>
+                    <td class="rank">#{{ loop.index }}</td>
+                    <td>{{ entry.name }}</td>
+                    <td class="score-val">{{ entry.score }}</td>
+                    <td class="date">{{ entry.timestamp[:10] }}</td>
+                </tr>
+                {% else %}
+                <tr><td colspan="4">No scores yet. Be the first!</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button class="btn btn-outline refresh-btn" data-game="{{ game.id }}">Refresh</button>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.leaderboard-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.game).classList.add('active');
+    });
+});
+
+document.querySelectorAll('.refresh-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+        const game = btn.dataset.game;
+        try {
+            const res = await fetch('/api/leaderboard/' + game);
+            const data = await res.json();
+            const tbody = document.getElementById('tbody-' + game);
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4">No scores yet. Be the first!</td></tr>';
+                return;
+            }
+            tbody.innerHTML = data.map((e, i) => `
+                <tr>
+                    <td class="rank">#${i+1}</td>
+                    <td>${e.name}</td>
+                    <td class="score-val">${e.score}</td>
+                    <td class="date">${e.timestamp.slice(0,10)}</td>
+                </tr>
+            `).join('');
+        } catch (err) {
+            console.error(err);
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Tutorials - GameDev Hub{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>📚 Game Development Tutorials</h1>
+    <p>Learn the fundamentals used in the games on this site.</p>
+</section>
+
+<div class="tutorials-list">
+    {% for t in tutorials %}
+    <article class="tutorial-card">
+        <div class="tutorial-meta">
+            <span class="badge">{{ t.category }}</span>
+            <span class="tut-id">#{{ t.id }}</span>
+        </div>
+        <h2>{{ t.title }}</h2>
+        <div class="tutorial-content">
+            <pre>{{ t.content }}</pre>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+
+<section class="cta">
+    <h2>Practice makes perfect</h2>
+    <p>Open the game source files in the project and modify them. That is the fastest way to learn.</p>
+    <a href="/games" class="btn btn-primary">Go Play</a>
+</section>
+{% endblock %}

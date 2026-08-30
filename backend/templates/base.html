@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}GameDev Hub{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">GameDev Hub</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                <li><a href="/games" class="{% if request.path.startswith('/games') or request.path.startswith('/game') %}active{% endif %}">Games</a></li>
+                <li><a href="/leaderboard" class="{% if request.path == '/leaderboard' %}active{% endif %}">Leaderboard</a></li>
+                <li><a href="/tutorials" class="{% if request.path == '/tutorials' %}active{% endif %}">Tutorials</a></li>
+                <li><a href="/about" class="{% if request.path == '/about' %}active{% endif %}">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2026 GameDev Hub • Built for learning game development</p>
+            <p class="footer-sub">Frontend + Backend • All buttons & games fully functional</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
